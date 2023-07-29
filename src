@@ -1,0 +1,368 @@
+package calculator;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+
+public class calci {
+
+	private JFrame frame;
+	private JTextField textField;
+	
+	
+	double first;
+	double second;
+	double result;
+	String operation;
+	String answer;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					calci window = new calci();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public calci() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(51, 51, 102));
+		frame.setBounds(100, 100, 398, 470);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(102, 255, 255));
+		textField.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		textField.setBounds(10, 10, 366, 93);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btn00 = new JButton("00");
+		btn00.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn00.getText();
+				textField.setText(number);
+			}
+		});
+		btn00.setForeground(Color.BLACK);
+		btn00.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn00.setBackground(new Color(255, 102, 0));
+		btn00.setBounds(186, 113, 68, 48);
+		frame.getContentPane().add(btn00);
+		
+		JButton btnBackspace= new JButton("\uF0E7");
+		btnBackspace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String backSpace=null;
+				if(textField.getText().length()>0)
+				{
+					StringBuilder str=new StringBuilder(textField.getText());
+					str.deleteCharAt(textField.getText().length()-1);
+					backSpace=str.toString();
+					textField.setText(backSpace);
+				}
+				
+			}
+		});
+		btnBackspace.setForeground(Color.BLACK);
+		btnBackspace.setFont(new Font("Wingdings", Font.BOLD, 25));
+		btnBackspace.setBackground(new Color(255, 102, 0));
+		btnBackspace.setBounds(10, 113, 68, 48);
+		frame.getContentPane().add(btnBackspace);
+		
+		JButton btnc = new JButton("C");
+		btnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText(null);
+			}
+		});
+		btnc.setForeground(Color.BLACK);
+		btnc.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnc.setBackground(new Color(255, 102, 0));
+		btnc.setBounds(101, 113, 68, 48);
+		frame.getContentPane().add(btnc);
+		
+		JButton btnp = new JButton("+");
+		btnp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				first=Double.parseDouble(textField.getText());
+				textField.setText("");
+				operation="+";
+			}
+		});
+		btnp.setForeground(Color.BLACK);
+		btnp.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnp.setBackground(new Color(255, 102, 0));
+		btnp.setBounds(275, 113, 68, 48);
+		frame.getContentPane().add(btnp);
+		
+		JButton btn7 = new JButton("7");
+		btn7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn7.getText();
+				textField.setText(number);
+			}
+		});
+		btn7.setForeground(Color.BLACK);
+		btn7.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn7.setBackground(Color.YELLOW);
+		btn7.setBounds(10, 179, 68, 48);
+		frame.getContentPane().add(btn7);
+		
+		JButton btn8 = new JButton("8");
+		btn8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn8.getText();
+				textField.setText(number);
+			}
+		});
+		btn8.setForeground(Color.BLACK);
+		btn8.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn8.setBackground(Color.YELLOW);
+		btn8.setBounds(101, 179, 68, 48);
+		frame.getContentPane().add(btn8);
+		
+		JButton btn9 = new JButton("9");
+		btn9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn9.getText();
+				textField.setText(number);
+			}
+		});
+		btn9.setForeground(Color.BLACK);
+		btn9.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn9.setBackground(Color.YELLOW);
+		btn9.setBounds(186, 179, 68, 48);
+		frame.getContentPane().add(btn9);
+		
+		JButton btnm = new JButton("-");
+		btnm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				first=Double.parseDouble(textField.getText());
+				textField.setText("");
+				operation="-";
+			}
+		});
+		btnm.setForeground(Color.BLACK);
+		btnm.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnm.setBackground(new Color(255, 102, 0));
+		btnm.setBounds(275, 179, 68, 48);
+		frame.getContentPane().add(btnm);
+		
+		JButton btn4 = new JButton("4");
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn4.getText();
+				textField.setText(number);
+			}
+		});
+		btn4.setForeground(Color.BLACK);
+		btn4.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn4.setBackground(Color.YELLOW);
+		btn4.setBounds(10, 240, 68, 48);
+		frame.getContentPane().add(btn4);
+		
+		JButton btn5 = new JButton("5");
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn5.getText();
+				textField.setText(number);
+			}
+		});
+		btn5.setForeground(Color.BLACK);
+		btn5.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn5.setBackground(Color.YELLOW);
+		btn5.setBounds(101, 237, 68, 48);
+		frame.getContentPane().add(btn5);
+		
+		JButton btn6 = new JButton("6");
+		btn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn6.getText();
+				textField.setText(number);
+			}
+		});
+		btn6.setForeground(Color.BLACK);
+		btn6.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn6.setBackground(Color.YELLOW);
+		btn6.setBounds(186, 237, 68, 48);
+		frame.getContentPane().add(btn6);
+		
+		JButton btnmu = new JButton("*");
+		btnmu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				first=Double.parseDouble(textField.getText());
+				textField.setText("");
+				operation="*";
+			}
+		});
+		btnmu.setForeground(Color.BLACK);
+		btnmu.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnmu.setBackground(new Color(255, 102, 0));
+		btnmu.setBounds(275, 237, 68, 48);
+		frame.getContentPane().add(btnmu);
+		
+		JButton btn1 = new JButton("1");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn1.getText();
+				textField.setText(number);
+			}
+		});
+		btn1.setForeground(Color.BLACK);
+		btn1.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn1.setBackground(Color.YELLOW);
+		btn1.setBounds(10, 299, 68, 48);
+		frame.getContentPane().add(btn1);
+		
+		JButton btn2 = new JButton("2");
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn2.getText();
+				textField.setText(number);
+			}
+		});
+		btn2.setForeground(Color.BLACK);
+		btn2.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn2.setBackground(Color.YELLOW);
+		btn2.setBounds(101, 299, 68, 48);
+		frame.getContentPane().add(btn2);
+		
+		JButton btn3 = new JButton("3");
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn3.getText();
+				textField.setText(number);
+			}
+		});
+		btn3.setForeground(Color.BLACK);
+		btn3.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn3.setBackground(Color.YELLOW);
+		btn3.setBounds(186, 299, 68, 48);
+		frame.getContentPane().add(btn3);
+		
+		JButton btndi = new JButton("/");
+		btndi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				first=Double.parseDouble(textField.getText());
+				textField.setText("");
+				operation="/";
+			}
+		});
+		btndi.setForeground(Color.BLACK);
+		btndi.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btndi.setBackground(new Color(255, 102, 0));
+		btndi.setBounds(275, 299, 68, 48);
+		frame.getContentPane().add(btndi);
+		
+		JButton btn0 = new JButton("0");
+		btn0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btn0.getText();
+				textField.setText(number);
+			}
+		});
+		btn0.setForeground(Color.BLACK);
+		btn0.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btn0.setBackground(Color.YELLOW);
+		btn0.setBounds(10, 357, 68, 48);
+		frame.getContentPane().add(btn0);
+		
+		JButton btnd = new JButton(".");
+		btnd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textField.getText()+btnd.getText();
+				textField.setText(number);
+			}
+		});
+		btnd.setForeground(Color.BLACK);
+		btnd.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnd.setBackground(Color.YELLOW);
+		btnd.setBounds(101, 357, 68, 48);
+		frame.getContentPane().add(btnd);
+		
+		JButton btne = new JButton("=");
+		btne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String answer;
+				second=Double.parseDouble(textField.getText());
+				if(operation=="+")
+				{
+					result=first+second;
+					answer=String.format("%.2f",result);
+					textField.setText(answer);
+				}
+				else if(operation=="-")
+				{
+					result=first-second;
+					answer=String.format("%.2f",result);
+					textField.setText(answer);
+				}
+				else if(operation=="*")
+				{
+					result=first*second;
+					answer=String.format("%.2f",result);
+					textField.setText(answer);
+				}
+				else if(operation=="/")
+				{
+					result=first/second;
+					answer=String.format("%.2f",result);
+					textField.setText(answer);
+				}
+				else 
+				{
+					result=first%second;
+					answer=String.format("%.2f",result);
+					textField.setText(answer);
+				}
+			}
+		});
+		btne.setForeground(Color.BLACK);
+		btne.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btne.setBackground(Color.YELLOW);
+		btne.setBounds(186, 357, 68, 48);
+		frame.getContentPane().add(btne);
+		
+		JButton btnmo = new JButton("%");
+		btnmo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				first=Double.parseDouble(textField.getText());
+				textField.setText("");
+				operation="%";
+			}
+		});
+		btnmo.setForeground(Color.BLACK);
+		btnmo.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		btnmo.setBackground(new Color(255, 102, 0));
+		btnmo.setBounds(275, 357, 68, 48);
+		frame.getContentPane().add(btnmo);
+	}
+}
